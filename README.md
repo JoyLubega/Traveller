@@ -3,7 +3,7 @@ Flight Booking Application
 
 Getting started:
 Create a virtualenv:
-- ````pip install vitualenv```
+- ```pip install vitualenv```
 - ```vitrualenv <Name of the virtualenv>```
 
 Activate your vitualenv:
