@@ -4,22 +4,6 @@ from django.utils import timezone
 # Create your models here.
 
 
-class Flights(models.Model):
-    flight_number = models.CharField(max_length=255, null=False)
-    destination = models.CharField(max_length=255, null=False)
-    pickup_point = models.CharField(max_length=255, null=False)
-    flight_time = models.CharField(max_length=255, null=False)
-    airline= models.CharField(max_length=255, null=False)
-    aircraft_type = models.CharField(max_length=255, null=False)
-    tail_number = models.CharField(max_length=255, null=False)
-    flight_date = models.CharField(max_length=255, null=False)
-    date_created = models.DateTimeField( default= timezone.now)
-    date_modified = models.DateTimeField(default=timezone.now)
-    
-
-    def __str__(self):
-        return "{},{},{},{}".format(self.flight_number,self.destination,self.pickup_point,self.airline)
-
 class User(models.Model):
       name = models.CharField(max_length=255)
       email = models.EmailField()
@@ -27,3 +11,16 @@ class User(models.Model):
 
       def __str__(self):
         return "{},{}".format(self.name,self.email)
+
+class Booking(models.Model):
+      pickup = models.CharField(max_length=255)
+      destination = models.CharField(max_length=255)
+      departure_date = models.CharField(max_length=255)
+      return_date = models.CharField(max_length=255)
+      no_travellers = models.CharField(max_length=255)
+      passport_number=models.CharField(max_length=255)
+      date_created = models.DateTimeField( default= timezone.now)
+      date_modified = models.DateTimeField(default=timezone.now)
+      
+      def __str__(self):
+        return "{},{}".format(self.destination,self.return_date)

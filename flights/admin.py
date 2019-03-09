@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Flights, User
+from .models import User, Booking
 
-admin.site.register(Flights)
+admin.site.register(Booking)
 admin.site.register(User)

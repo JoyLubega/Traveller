@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import FlightsViewSet
-from rest_framework.routers import DefaultRouter
+from .views import FlightsView, UsersView
 
 
-router = DefaultRouter()
-router.register('flights', FlightsViewSet, base_name='flights')
-urlpatterns = router.urls
+urlpatterns = [
+    path('flights/', FlightsView.as_view(), name="flights"),
+    path('users/', UsersView.as_view(), name="users"),
+]
