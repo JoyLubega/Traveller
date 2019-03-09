@@ -13,3 +13,4 @@ if __name__ == '__main__':
             "forget to activate a virtual environment?"
         ) 
     execute_from_command_line(sys.argv)
+ 
