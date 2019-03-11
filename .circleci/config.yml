@@ -12,7 +12,7 @@ jobs:
         # enviroment:
         #   APP_SECRET_KEY: 88n0)wk0s2izw4fuu%p7%tsq(74)#-e)-)!+#t-h96piu=m-0e
         #   ENVIROMENT: testing
-        #   APP_TEST_DATABASE_URI: postgresql://postgres@localhost/shoppinglists_test
+          # APP_TEST_DATABASE_URI: postgresql://postgres@localhost/test_traveller
 
       
       # Specify service dependencies here if necessary
