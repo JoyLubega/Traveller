@@ -26,6 +26,44 @@ class BaseViewTest(APITestCase):
             content_type="application/json"
         )
     
+    def login_client(self, username="", password=""):
+        # get a token from DRF
+        response = self.client.post(
+            reverse("obtain-token"),
+            data=json.dumps(
+                {
+                    'username': username,
+                    'password': password
+                }
+            ),
+            content_type='application/json'
+        )
+        print(response.data)
+        self.token = response.data['token']
+        # set the token in the header
+        self.client.credentials(
+            HTTP_AUTHORIZATION='Bearer ' + self.token
+        )
+        self.client.login(username=username, password=password)
+        return self.token
+    def register_a_user(self, username="", password="", email=""):
+        return self.client.post(
+            reverse(
+                "auth-register",
+                kwargs={
+                    "version": "v1"
+                }
+            ),
+            data=json.dumps(
+                {
+                    "username": username,
+                    "password": password,
+                    "email": email
+                }
+            ),
+            content_type='application/json'
+        )
+
     def setUp(self):
         # create a admin user
         self.user = User.objects.create_superuser(

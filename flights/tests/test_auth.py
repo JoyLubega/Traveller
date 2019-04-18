@@ -7,12 +7,13 @@ from .base import BaseViewTest
 
 class AuthLoginUserTest(BaseViewTest):
     """
-    Tests for the auth/login/ endpoint
+    Tests for the login/ endpoint
     """
 
     def test_login_user_with_valid_credentials(self):
         # test login with valid credentials
         response = self.login_a_user("test_user", "testing")
+        print(response)
         # assert token key exists
         self.assertIn("token", response.data)
         # assert status code is 200 OK
