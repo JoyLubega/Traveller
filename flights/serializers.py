@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Booking, User
+from .models import Booking
+from django.contrib.auth.models import User
 
 
 class BookingSerializer(serializers.ModelSerializer):
@@ -21,12 +22,11 @@ class UserSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
 
     class Meta:
-        """Meta class to map serializer's fields with the model fields."""
         model = User
-        fields = ('id',
-                  'name',
-                  'email',
-                  'password',
-                  )
+        fields = ("username", "email")
         
-    
+class TokenSerializer(serializers.Serializer):
+    """
+    This serializer serializes the token data
+    """
+    token = serializers.CharField(max_length=255)
