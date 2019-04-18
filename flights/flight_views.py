@@ -23,7 +23,7 @@ class FlightView(generics.ListCreateAPIView):
     """
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.IsAuthenticated,)
 
     @validate_flight_data
     def post(self, request, *args, **kwargs):
@@ -47,17 +47,6 @@ class FlightView(generics.ListCreateAPIView):
        serializer = BookingSerializer(booked_flights, many=True)
        return Response({"booked_flights": serializer.data})
 
-    # def get(self, request, *args, **kwargs):
-    #     try:
-    #         flight = self.queryset.get(pk=kwargs["pk"])
-    #         return Response(BookingSerializer(flight).data)
-    #     except Booking.DoesNotExist:
-    #         return Response(
-    #             data={
-    #                 "message": "Flight with id: {} does not exist".format(kwargs["pk"])
-    #             },
-    #             status=status.HTTP_404_NOT_FOUND
-    #         )
 
 class FlightDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -71,7 +60,7 @@ class FlightDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get(self, request, *args, **kwargs):
         try:
             flight = self.queryset.get(pk=kwargs["id"])
-            return Response(BookingSerializer(flight).data)
+            return Response(BookingSerializer(flight).data)  
         except Booking.DoesNotExist:
             return Response(
                 data={
@@ -80,7 +69,7 @@ class FlightDetailView(generics.RetrieveUpdateDestroyAPIView):
                 status=status.HTTP_404_NOT_FOUND
             )
 
-    # @validate_request_data
+    @validate_flight_data
     def put(self, request, *args, **kwargs):
         try:
             flight = self.queryset.get(pk=kwargs["id"])
