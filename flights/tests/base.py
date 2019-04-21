@@ -4,20 +4,21 @@ from django.urls import reverse
 import json
 
 
-from ..models import Booking
+from ..models import Flight
 
 class BaseViewTest(APITestCase):
     client = APIClient()
 
     @staticmethod
-    def create_booking(departure_date="", destination="", pickup="", return_date="", no_travellers="", passport_number=""):
+    def create_booking(user_id="",departure_date="", destination="", pickup="", return_date="", no_travellers="", passport_number=""):
         
-        Booking.objects.create(departure_date=departure_date, 
+        Flight.objects.create(departure_date=departure_date, 
                 destination=destination,
                 pickup=pickup,
                 return_date=return_date,
                 no_travellers=no_travellers,
-                passport_number=passport_number
+                passport_number=passport_number,
+                user_id=user_id
                 )
     
     def login_a_user(self, username="", password=""):
@@ -38,7 +39,6 @@ class BaseViewTest(APITestCase):
             ),
             content_type='application/json'
         )
-        print(response.data)
         self.token = response.data['token']
         # set the token in the header
         self.client.credentials(
@@ -49,10 +49,8 @@ class BaseViewTest(APITestCase):
     def register_a_user(self, username="", password="", email=""):
         return self.client.post(
             reverse(
-                "auth-register",
-                kwargs={
-                    "version": "v1"
-                }
+                "auth-register"
+                
             ),
             data=json.dumps(
                 {
@@ -63,6 +61,15 @@ class BaseViewTest(APITestCase):
             ),
             content_type='application/json'
         )
+    def fetch_a_flight(self, id):
+        return self.client.get(
+            reverse(
+                "flights-detail",
+                kwargs={
+                    "id": id
+                }
+            ))
+
 
     def setUp(self):
         # create a admin user
@@ -73,6 +80,16 @@ class BaseViewTest(APITestCase):
             first_name="test",
             last_name="user",
         )
+        self.user = User.objects.create(username="joyce")
         # add test data
-        self.create_booking(departure_date="today", destination="kla",pickup="ebbs",return_date="tommorrow",no_travellers=2,passport_number="3"
+        self.create_booking(user_id=self.user.id,departure_date="today", destination="kla",pickup="ebbs",return_date="tommorrow",no_travellers=2,passport_number="3"
         )
+        self.flight_data={
+            "departure_date":"today", 
+            "destination":"ams",
+            "pickup":"ebbs",
+            "return_date":"tommorrow",
+            "no_travellers":2,
+            "passport_number":"BCV",
+            "user_id":"1"
+        }

@@ -1,14 +1,14 @@
 from rest_framework import serializers
-from .models import Booking
+from .models import Flight
 from django.contrib.auth.models import User
 
 
-class BookingSerializer(serializers.ModelSerializer):
+class FlightSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
 
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
-        model = Booking
+        model = Flight
         fields = ('id',
                   'pickup',
                   'destination',
