@@ -28,7 +28,6 @@ class FlightView(generics.ListCreateAPIView):
 
     @validate_flight_data
     def post(self, request, *args, **kwargs):
-        print(request.user.id,"++++++++++++++")
         flight = Flight.objects.create(
             pickup=request.data["pickup"],
             destination=request.data["destination"],

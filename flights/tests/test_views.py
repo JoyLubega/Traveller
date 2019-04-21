@@ -56,6 +56,5 @@ class FlightTestCase(BaseViewTest):
             reverse('flights'),
             self.flight_data,
             format="json")
-        self.assertEqual(response.data, "self.valid_data")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         
