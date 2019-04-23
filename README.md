@@ -1,7 +1,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/JoyLubega/Traveller/badge.svg?branch=develop)](https://coveralls.io/github/JoyLubega/Traveller?branch=develop)
-
 [![CircleCI](https://circleci.com/gh/JoyLubega/Traveller.svg?style=svg)](https://circleci.com/gh/JoyLubega/Traveller)
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate  maintainability)
+[![Maintainability]
+(https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimatemaintainability)
 # Traveller
 Flight Booking Application
 
