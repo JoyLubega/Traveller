@@ -81,7 +81,6 @@ class BaseViewTest(APITestCase):
             last_name="user",
         )
         self.user = User.objects.create(username="joyce")
-        # add test data
         self.create_booking(user_id=self.user.id,departure_date="today", destination="kla",pickup="ebbs",return_date="tommorrow",no_travellers=2,passport_number="3"
         )
         self.flight_data={
@@ -90,6 +89,5 @@ class BaseViewTest(APITestCase):
             "pickup":"ebbs",
             "return_date":"tommorrow",
             "no_travellers":2,
-            "passport_number":"BCV",
-            "user_id":"1"
+            "passport_number":"BCV",   
         }

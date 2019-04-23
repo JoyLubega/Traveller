@@ -94,7 +94,7 @@ class FlightDetailView(generics.RetrieveUpdateDestroyAPIView):
         except Flight.DoesNotExist:
             return Response(
                 data={
-                    "message": "Flight with id: {} does not exist".format(kwargs["pk"])
+                    "message": "Flight with id: {} does not exist".format(kwargs["id"])
                 },
                 status=status.HTTP_404_NOT_FOUND
             )

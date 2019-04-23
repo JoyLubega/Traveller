@@ -23,6 +23,14 @@ class AuthLoginUserTest(BaseViewTest):
         # assert status code is 401 UNAUTHORIZED
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
+    def test_login_user_with_empty_credentials(self):
+        # test login with valid credentials
+        response = self.login_a_user("", "testing")
+        print(response)
+        
+        # assert status code is 401 UNAUTHORIZED
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
     def test_register_a_user(self):
         response = self.register_a_user("new_user", "new_pass", "new_user@mail.com")
         # assert status code is 201 CREATED
@@ -32,4 +40,12 @@ class AuthLoginUserTest(BaseViewTest):
         # test with invalid data
         response = self.register_a_user()
         # assert status code
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_register_a_userwith_empty_creds(self):
+        response = self.register_a_user("", "new_pass", "new_user@mail.com")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_register_a_userwith_emptycreds(self):
+        response = self.register_a_user("name", "", "new_user@mail.com")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

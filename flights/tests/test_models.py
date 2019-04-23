@@ -8,7 +8,6 @@ class FlightModelTestCase(BaseViewTest):
     def test_model_can_create_a_flight(self):
         """Test the flight model can create a flight."""
         old_count = 0
-        # self.booked_flight.save()
         new_count = Flight.objects.count()
         self.assertNotEqual(old_count, new_count)
 
