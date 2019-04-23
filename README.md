@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/JoyLubega/Traveller/badge.svg?branch=develop)](https://coveralls.io/github/JoyLubega/Traveller?branch=develop)
+
 # Traveller
 Flight Booking Application
 
